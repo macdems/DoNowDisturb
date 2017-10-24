@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Teraz Nie Przeszkadzać</string>
+    <string name="policy_control_disabled">
+        Poprawne działanie kafelka wymaga dostępu do „Nie przeszkadzać”.
+        Musisz przyznać uprawnienia aby korzystać z tej aplikacji.</string>
+    <string name="enable_button">Przyznaj</string>
+    <string name="tile_settings">Ustawienia Kafelka</string>
+    <string name="silence_mode_label">Ustawienia trybu „Nie przeszkadzać”</string>
+    <string-array name="silence_mode_labels">
+        <item>Tylko z ważnych podowodów</item>
+        <item>Tylko alarmy</item>
+        <item>Nie przerywaj</item>
+    </string-array>
+    <string name="tile_label">Nie przeszkadzać</string>
+    <string name="select_end_time">Wybierz czas zakończenia tryby „Nie przeszkadzać”</string>
+    <string name="turn_off_time" formatted="false">Wyciszono do %d:%02d</string>
+    <string name="turned_off">Wyłączono tryb „Nie przeszkadzać”</string>
+</resources>

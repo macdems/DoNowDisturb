@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Do Now Disturb</string>
+    <string name="policy_control_disabled">
+        Do Not Disturb access is necessary for proper tile function.
+        You must enable this setting, before you start using a tile.</string>
+    <string name="enable_button">Enable</string>
+    <string name="tile_settings">Tile Settings</string>
+    <string name="silence_mode_label">Silence mode activated by the tile</string>
+    <string-array name="silence_mode_labels">
+        <item>Priority only</item>
+        <item>Alarms only</item>
+        <item>Total silence</item>
+    </string-array>
+    <string-array name="silence_mode_values" translatable="false">
+        <item>priority</item>
+        <item>alarms</item>
+        <item>none</item>
+    </string-array>
+    <string name="tile_label">Do not disturb</string>
+    <string name="select_end_time">Select Silence End Time</string>
+    <string name="turn_off_time" formatted="false">Silenced until %d:%02d</string>
+    <string name="turned_off">Do Not Disturb mode turned off</string>
+</resources>
