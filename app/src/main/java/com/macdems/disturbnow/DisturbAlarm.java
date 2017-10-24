@@ -26,7 +26,7 @@ public class DisturbAlarm extends BroadcastReceiver {
         Intent intent = new Intent(context, DisturbAlarm.class);
         PendingIntent alarm = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        manager.set(AlarmManager.RTC_WAKEUP, time.getTimeInMillis(), alarm);
+        manager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time.getTimeInMillis(), alarm);
     }
 
     public static void cancelAlarm(Context context) {
