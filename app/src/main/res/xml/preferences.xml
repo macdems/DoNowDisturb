@@ -10,5 +10,13 @@
             android:key="silence_mode"
             android:summary="%s"
             android:title="@string/silence_mode_label" />
+
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/dialog_settings">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="dark_theme"
+            android:title="@string/dark_theme_label"></SwitchPreference>
     </PreferenceCategory>
 </PreferenceScreen>

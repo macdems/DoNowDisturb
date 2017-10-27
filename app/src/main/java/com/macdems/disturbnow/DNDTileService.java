@@ -2,9 +2,9 @@ package com.macdems.disturbnow;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Objects;
 
 import android.app.NotificationManager;
-import android.app.TimePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 public class DNDTileService extends TileService
-        implements TimePickerDialog.OnTimeSetListener {
+        implements TimeDialog.OnTimeSetListener {
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -71,14 +71,8 @@ public class DNDTileService extends TileService
         }
     }
 
-    private static final HashMap<String, Integer> silenceModes = new HashMap<String, Integer>() {{
-            put("priority", NotificationManager.INTERRUPTION_FILTER_PRIORITY);
-            put("alarms", NotificationManager.INTERRUPTION_FILTER_ALARMS);
-            put("none", NotificationManager.INTERRUPTION_FILTER_NONE);
-    }};
-
     public void toggleTile() {
-        cancelAlarm();
+        //cancelAlarm();
         Tile tile = getQsTile();
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         int currentState = nm.getCurrentInterruptionFilter();
@@ -86,8 +80,11 @@ public class DNDTileService extends TileService
         if (currentState == NotificationManager.INTERRUPTION_FILTER_ALL) {
             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String mode = pref.getString("silence_mode", "priority");
-            int newState = silenceModes.get(mode);
-            Log.d("DoNowDisturb", String.format("setting silence mode to '%s'", mode));
+            int newState =
+                    (Objects.equals(mode, "none"))?   NotificationManager.INTERRUPTION_FILTER_NONE :
+                    (Objects.equals(mode, "alarms"))? NotificationManager.INTERRUPTION_FILTER_ALARMS :
+                                                      NotificationManager.INTERRUPTION_FILTER_PRIORITY;
+            Log.d("DoNowDisturb", String.format("setting silence mode to '%s' (%d)", mode, newState));
             nm.setInterruptionFilter(newState);
             tile.setState(Tile.STATE_ACTIVE);
             tile.updateTile();
@@ -100,7 +97,7 @@ public class DNDTileService extends TileService
     }
 
     public void setTileToMatchCurrentState() {
-        cancelAlarm();
+        //cancelAlarm();
         Tile tile = getQsTile();
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         int currentInterruptionFilter = nm.getCurrentInterruptionFilter();
@@ -121,11 +118,15 @@ public class DNDTileService extends TileService
             hour += 1;
             minute -= 60;
         }
-        TimePickerDialog timePicker;
-        timePicker = new TimePickerDialog(getApplicationContext(), this, hour, minute, true);
-        timePicker.setTitle(R.string.select_end_time);
-
-        showDialog(timePicker);
+        TimeDialog timeDialog;
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean theme = pref.getBoolean("dark_theme", false);
+        timeDialog = new TimeDialog(getApplicationContext(),
+                theme? android.R.style.Theme_Material_Dialog_NoActionBar :
+                       android.R.style.Theme_Material_Light_Dialog_NoActionBar,
+                this, hour, minute, true);
+        //timeDialog.setTitle(R.string.select_end_time);
+        showDialog(timeDialog);
     }
 
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {

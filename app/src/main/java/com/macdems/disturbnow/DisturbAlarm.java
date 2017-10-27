@@ -18,7 +18,7 @@ public class DisturbAlarm extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
-        Toast.makeText(context, R.string.turned_off, Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, R.string.turned_off, Toast.LENGTH_LONG).show();
         Log.d("DoNowDisturb", "turned off DND mode");
     }
 
