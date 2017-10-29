@@ -1,6 +1,24 @@
+/*
+ * Do Now Disturb
+ * Copyright (C) 2017 Maciej Dems <macdems@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ */
+
 package com.macdems.disturbnow;
 
-import java.util.Calendar;
 import java.util.Objects;
 
 import android.app.NotificationManager;
@@ -15,8 +33,7 @@ import android.service.quicksettings.TileService;
 import android.util.Log;
 import android.widget.TimePicker;
 
-public class DNDTileService extends TileService
-        implements TimeDialog.OnTimeSetListener {
+public class DNDTileService extends TileService {
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -111,37 +128,8 @@ public class DNDTileService extends TileService
     }
 
     private void selectTime() {
-        Calendar time = Calendar.getInstance();
-        int hour = (time.get(Calendar.HOUR_OF_DAY) + 1) % 24;
-        int minute = 5 * ((time.get(Calendar.MINUTE) + 4) / 5);
-        if (minute >= 60) {
-            hour += 1;
-            minute -= 60;
-        }
-        TimeDialog timeDialog;
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        boolean theme = pref.getBoolean("dark_theme", false);
-        timeDialog = new TimeDialog(getApplicationContext(),
-                theme? R.style.AppTheme_Dialog_Dark : R.style.AppTheme_Dialog_Light,
-                this, hour, minute, true);
-        //timeDialog.setTitle(R.string.select_end_time);
+        TimeDialog timeDialog = new TimeDialog(getApplicationContext());
         showDialog(timeDialog);
-    }
-
-    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-        Calendar time = Calendar.getInstance();
-        time.setTimeInMillis(System.currentTimeMillis());
-
-        int currentHour = time.get(Calendar.HOUR_OF_DAY);
-        if (hour < currentHour || (hour == currentHour && minute <= time.get(Calendar.MINUTE))) {
-            time.add(Calendar.DATE, 1);
-        }
-        time.set(Calendar.HOUR_OF_DAY, hour);
-        time.set(Calendar.MINUTE, minute);
-        time.set(Calendar.SECOND, 0);
-
-        Context context = getApplicationContext();
-        DisturbAlarm.setupAlarm(time, context);
     }
 
     private void cancelAlarm() {
