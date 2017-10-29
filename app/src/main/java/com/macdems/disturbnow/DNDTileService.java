@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Objects;
 
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,10 +12,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 public class DNDTileService extends TileService
         implements TimeDialog.OnTimeSetListener {
@@ -74,7 +71,7 @@ public class DNDTileService extends TileService
         }
     }
 
-    public void toggleTile() {
+    private void toggleTile() {
         cancelAlarm();
         Tile tile = getQsTile();
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -99,7 +96,7 @@ public class DNDTileService extends TileService
         }
     }
 
-    public void setTileToMatchCurrentState() {
+    private void setTileToMatchCurrentState() {
         Tile tile = getQsTile();
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         assert nm != null;
@@ -113,7 +110,7 @@ public class DNDTileService extends TileService
         }
     }
 
-    protected void selectTime() {
+    private void selectTime() {
         Calendar time = Calendar.getInstance();
         int hour = (time.get(Calendar.HOUR_OF_DAY) + 1) % 24;
         int minute = 5 * ((time.get(Calendar.MINUTE) + 4) / 5);
@@ -147,7 +144,9 @@ public class DNDTileService extends TileService
         DisturbAlarm.setupAlarm(time, context);
     }
 
-    public void cancelAlarm() {
-        DisturbAlarm.cancelAlarm(getApplicationContext());
+    private void cancelAlarm() {
+        Context context = getApplicationContext();
+        DisturbAlarm.cancelAlarm(context);
+        DisturbAlarm.cancelNotification(context);
     }
 }

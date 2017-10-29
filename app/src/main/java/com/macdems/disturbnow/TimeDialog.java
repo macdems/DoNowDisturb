@@ -19,10 +19,6 @@ class TimeDialog extends AlertDialog implements DialogInterface.OnClickListener,
     private final TimePicker mTimePicker;
     private final OnTimeSetListener mTimeSetListener;
 
-    private final int mInitialHourOfDay;
-    private final int mInitialMinute;
-    private final boolean mIs24HourView;
-
     interface OnTimeSetListener {
         void onTimeSet(TimePicker view, int hourOfDay, int minute);
     }
@@ -47,9 +43,6 @@ class TimeDialog extends AlertDialog implements DialogInterface.OnClickListener,
         super(context, resolveDialogTheme(context, themeResId));
 
         mTimeSetListener = listener;
-        mInitialHourOfDay = hourOfDay;
-        mInitialMinute = minute;
-        mIs24HourView = is24HourView;
 
         final Context themeContext = getContext();
         final LayoutInflater inflater = LayoutInflater.from(themeContext);
@@ -60,9 +53,9 @@ class TimeDialog extends AlertDialog implements DialogInterface.OnClickListener,
         //setButtonPanelLayoutHint(LAYOUT_HINT_SIDE);
 
         mTimePicker = (TimePicker) view.findViewById(R.id.timePicker);
-        mTimePicker.setIs24HourView(mIs24HourView);
-        mTimePicker.setCurrentHour(mInitialHourOfDay);
-        mTimePicker.setCurrentMinute(mInitialMinute);
+        mTimePicker.setIs24HourView(is24HourView);
+        mTimePicker.setCurrentHour(hourOfDay);
+        mTimePicker.setCurrentMinute(minute);
         mTimePicker.setOnTimeChangedListener(this);
     }
 

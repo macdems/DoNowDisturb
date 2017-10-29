@@ -48,14 +48,13 @@ public class DisturbAlarm extends BroadcastReceiver {
         }
     }
 
-    public static void addNotification(Context context, String text, PendingIntent cancel) {
+    private static void addNotification(Context context, String text, PendingIntent cancel) {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.ic_disturbnow)
                         .setContentTitle(text)
                         .setContentText(context.getString(R.string.click_to_turn_off))
                         .setOngoing(true)
-                        //.setAutoCancel(true)
                 ;
 
         builder.setContentIntent(cancel);
@@ -71,14 +70,12 @@ public class DisturbAlarm extends BroadcastReceiver {
         AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         assert manager != null;
         manager.cancel(alarm);
-
-        cancelNotification(context);
     }
 
-    private static void cancelNotification(Context context) {
-        NotificationManager notification = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        assert notification != null;
-        notification.cancel(R.id.notification);
+    public static void cancelNotification(Context context) {
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        assert manager != null;
+        manager.cancel(R.id.notification);
     }
 
 }

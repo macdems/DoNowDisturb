@@ -16,9 +16,10 @@ public class MainActivity extends PreferenceActivity {
     }
 
     private void setPermissionTabView() {
-        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        assert manager != null;
         CardView cardview = (CardView) findViewById(R.id.permission_card);
-        cardview.setVisibility(nm.isNotificationPolicyAccessGranted()? View.GONE : View.VISIBLE);
+        cardview.setVisibility(manager.isNotificationPolicyAccessGranted()? View.GONE : View.VISIBLE);
     }
 
     @Override
