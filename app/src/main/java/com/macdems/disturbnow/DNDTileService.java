@@ -1,10 +1,10 @@
 package com.macdems.disturbnow;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Objects;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -24,7 +25,8 @@ public class DNDTileService extends TileService
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals("android.app.action.INTERRUPTION_FILTER_CHANGED")) {
+            if (Objects.equals(action, "android.app.action.INTERRUPTION_FILTER_CHANGED")) {
+                Log.d("DoNowDisturb", "detected interruption filter change");
                 setTileToMatchCurrentState();
             }
         }
@@ -59,6 +61,7 @@ public class DNDTileService extends TileService
     @Override
     public void onClick() {
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        assert nm != null;
         if (nm.isNotificationPolicyAccessGranted()) {
             super.onClick();
             toggleTile();
@@ -72,11 +75,11 @@ public class DNDTileService extends TileService
     }
 
     public void toggleTile() {
-        //cancelAlarm();
+        cancelAlarm();
         Tile tile = getQsTile();
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        assert nm != null;
         int currentState = nm.getCurrentInterruptionFilter();
-
         if (currentState == NotificationManager.INTERRUPTION_FILTER_ALL) {
             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String mode = pref.getString("silence_mode", "priority");
@@ -97,9 +100,9 @@ public class DNDTileService extends TileService
     }
 
     public void setTileToMatchCurrentState() {
-        //cancelAlarm();
         Tile tile = getQsTile();
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        assert nm != null;
         int currentInterruptionFilter = nm.getCurrentInterruptionFilter();
         if (currentInterruptionFilter == NotificationManager.INTERRUPTION_FILTER_ALL) {
             tile.setState(Tile.STATE_INACTIVE);
@@ -122,8 +125,7 @@ public class DNDTileService extends TileService
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean theme = pref.getBoolean("dark_theme", false);
         timeDialog = new TimeDialog(getApplicationContext(),
-                theme? android.R.style.Theme_Material_Dialog_NoActionBar :
-                       android.R.style.Theme_Material_Light_Dialog_NoActionBar,
+                theme? R.style.AppTheme_Dialog_Dark : R.style.AppTheme_Dialog_Light,
                 this, hour, minute, true);
         //timeDialog.setTitle(R.string.select_end_time);
         showDialog(timeDialog);
@@ -143,10 +145,6 @@ public class DNDTileService extends TileService
 
         Context context = getApplicationContext();
         DisturbAlarm.setupAlarm(time, context);
-
-        Toast.makeText(context,
-                String.format(getString(R.string.turn_off_time), hour, minute),
-                Toast.LENGTH_LONG).show();
     }
 
     public void cancelAlarm() {

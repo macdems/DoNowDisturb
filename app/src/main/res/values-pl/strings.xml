@@ -12,11 +12,13 @@
         <item>Tylko alarmy</item>
         <item>Nie przerywaj</item>
     </string-array>
+    <string name="show_notification_label">Pokaż powiadomienie</string>
     <string name="dialog_settings">Ustawienia okienka dialogowego</string>
     <string name="dark_theme_label">Użyj ciemnego motywu</string>
     <string name="tile_label">Nie przeszkadzać</string>
     <string name="select_end_time">Nie przeszkadzać do</string>
     <string name="keep_silent">Na stałe</string>
-    <string name="turn_off_time" formatted="false">Wyciszono do %d:%02d</string>
+    <string name="do_not_disturb_until_message" formatted="false">Wyciszono do %d:%02d</string>
+    <string name="click_to_turn_off">Dotknij tutaj aby wyłączyć</string>
     <string name="turned_off">Wyłączono tryb „Nie przeszkadzać”</string>
 </resources>

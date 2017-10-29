@@ -10,6 +10,10 @@
             android:key="silence_mode"
             android:summary="%s"
             android:title="@string/silence_mode_label" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="show_notification"
+            android:title="@string/show_notification_label" />
 
 
     </PreferenceCategory>
