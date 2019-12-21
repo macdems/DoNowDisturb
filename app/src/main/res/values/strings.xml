@@ -38,7 +38,7 @@
     <string name="show_notification_label">Show notification</string>
     <string name="dialog_settings">Dialog Settings</string>
     <string name="dark_theme_label">Use dark theme</string>
-    <string name="tile_label">Do not disturb</string>
+    <string name="tile_label">Do Not Disturb</string>
     <string name="select_end_time">Do not disturb until</string>
     <string name="keep_silent">Keep</string>
     <string name="do_not_disturb_until_message" formatted="false">Silenced until %d:%02d</string>

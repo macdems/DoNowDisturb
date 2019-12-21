@@ -24,7 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.preference.PreferenceActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
+import androidx.cardview.widget.CardView;
 import android.view.View;
 
 public class MainActivity extends PreferenceActivity {
