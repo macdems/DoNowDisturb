@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DoNowDisturb.iml" filepath="$PROJECT_DIR$/DoNowDisturb.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/do_now_disturb/do_now_disturb.iml" filepath="$PROJECT_DIR$/do_now_disturb/do_now_disturb.iml" />
     </modules>
   </component>
 </project>
