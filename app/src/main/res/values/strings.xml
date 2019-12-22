@@ -44,4 +44,6 @@
     <string name="do_not_disturb_until_message" formatted="false">Silenced until %d:%02d</string>
     <string name="click_to_turn_off">Click to turn off</string>
     <string name="turned_off">Do Not Disturb mode turned off</string>
+    <string name="channel_name">Do Now Disturb</string>
+    <string name="channel_description">Do Now Disturb notifications</string>
 </resources>

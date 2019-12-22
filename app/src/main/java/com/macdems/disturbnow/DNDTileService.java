@@ -31,13 +31,14 @@ import android.preference.PreferenceManager;
 import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.util.Log;
+import androidx.annotation.NonNull;
 import android.widget.TimePicker;
 
 public class DNDTileService extends TileService {
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
-        public void onReceive(Context context, Intent intent) {
+        public void onReceive(Context context, @NonNull Intent intent) {
             String action = intent.getAction();
             if (Objects.equals(action, "android.app.action.INTERRUPTION_FILTER_CHANGED")) {
                 Log.d("DoNowDisturb", "detected interruption filter change");

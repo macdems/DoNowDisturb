@@ -39,4 +39,6 @@
     <string name="do_not_disturb_until_message" formatted="false">Wyciszono do %d:%02d</string>
     <string name="click_to_turn_off">Dotknij tutaj aby wyłączyć</string>
     <string name="turned_off">Wyłączono tryb „Nie przeszkadzać”</string>
+    <string name="channel_name">Teraz Nie Przeszkadzać</string>
+    <string name="channel_description">Powiadomienia „Teraz Nie Przeszkadzać”</string>
 </resources>
