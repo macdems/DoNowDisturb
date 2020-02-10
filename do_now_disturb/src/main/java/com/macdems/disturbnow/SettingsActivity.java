@@ -37,7 +37,7 @@ public class SettingsActivity extends PreferenceActivity {
     private void setPermissionTabView() {
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         assert manager != null;
-        CardView cardview = (CardView) findViewById(R.id.permission_card);
+        CardView cardview = findViewById(R.id.permission_card);
         cardview.setVisibility(manager.isNotificationPolicyAccessGranted()? View.GONE : View.VISIBLE);
     }
 
