@@ -32,7 +32,6 @@ import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 import android.util.Log;
 import androidx.annotation.NonNull;
-import android.widget.TimePicker;
 
 public class DNDTileService extends TileService {
 
@@ -83,7 +82,8 @@ public class DNDTileService extends TileService {
         } else {
             Intent closeIntent = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             sendBroadcast(closeIntent);
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, SettingsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             setTileToMatchCurrentState();
         }

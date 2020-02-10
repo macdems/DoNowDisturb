@@ -27,7 +27,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import android.view.View;
 
-public class MainActivity extends PreferenceActivity {
+public class SettingsActivity extends PreferenceActivity {
 
     public void openAccessControl(View v) {
         Intent intent = new Intent(android.provider.Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS);
