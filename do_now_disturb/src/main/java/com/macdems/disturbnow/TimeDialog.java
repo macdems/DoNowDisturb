@@ -20,6 +20,7 @@
 package com.macdems.disturbnow;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -57,7 +58,8 @@ class TimeDialog extends AlertDialog implements DialogInterface.OnClickListener,
         final View view = inflater.inflate(R.layout.time_dialog, null);
         setView(view);
         setButton(BUTTON_POSITIVE, themeContext.getString(android.R.string.ok), this);
-        setButton(BUTTON_NEGATIVE, themeContext.getString(R.string.keep_silent), this);
+        setButton(BUTTON_NEUTRAL, themeContext.getString(R.string.keep_silent), this);
+        setButton(BUTTON_NEGATIVE, themeContext.getString(android.R.string.cancel), this);
 
         //setTitle(R.string.select_end_time);
 
@@ -88,6 +90,11 @@ class TimeDialog extends AlertDialog implements DialogInterface.OnClickListener,
                 setAlarm();
                 break;
             case BUTTON_NEGATIVE:
+                NotificationManager nm = (NotificationManager)getContext()
+                        .getSystemService(Context.NOTIFICATION_SERVICE);
+                assert nm != null;
+                nm.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL);
+            case BUTTON_NEUTRAL:
                 cancel();
                 break;
         }
