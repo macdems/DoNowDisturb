@@ -8,6 +8,8 @@ Hence this application is similar to the popular [Shush!](https://play.google.co
 application, however it is designed for the new Android ‘Do Not Disturb’
 mode.
 
+[<img alt='Get it on Google Play' height='80px' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/>](https://play.google.com/store/apps/details?id=com.macdems.disturbnow)
+
 ## Credits
 
 Inspiration and ideas:
