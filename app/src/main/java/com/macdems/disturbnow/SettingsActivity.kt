@@ -50,4 +50,6 @@ class SettingsActivity : PreferenceActivity() {
         super.onResume()
         setPermissionTabView()
     }
+
+
 }

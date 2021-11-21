@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DoNowDisturb.iml" filepath="$PROJECT_DIR$/DoNowDisturb.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/do_now_disturb/DoNowDisturb.do_now_disturb.iml" filepath="$PROJECT_DIR$/.idea/modules/do_now_disturb/DoNowDisturb.do_now_disturb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Do_Now_Disturb.iml" filepath="$PROJECT_DIR$/.idea/modules/Do_Now_Disturb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Do_Now_Disturb.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Do_Now_Disturb.app.iml" />
     </modules>
   </component>
 </project>
