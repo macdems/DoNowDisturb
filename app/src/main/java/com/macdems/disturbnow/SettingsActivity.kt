@@ -21,14 +21,14 @@ package com.macdems.disturbnow
 import android.app.NotificationManager
 import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceActivity
 import android.provider.Settings
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 
-class SettingsActivity : PreferenceActivity() {
+class SettingsActivity : AppCompatActivity() {
 
-    fun openAccessControl(v: View?) {
+    fun openAccessControl(@Suppress("UNUSED_PARAMETER") v: View?) {
         val intent = Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)
         startActivity(intent)
     }
@@ -41,7 +41,10 @@ class SettingsActivity : PreferenceActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        addPreferencesFromResource(R.xml.preferences)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.content, SettingsFragment())
+            .commit()
         setContentView(R.layout.main)
         setPermissionTabView()
     }
@@ -50,6 +53,4 @@ class SettingsActivity : PreferenceActivity() {
         super.onResume()
         setPermissionTabView()
     }
-
-
 }

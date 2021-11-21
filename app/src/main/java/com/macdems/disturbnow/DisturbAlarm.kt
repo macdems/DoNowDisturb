@@ -25,7 +25,7 @@ import com.macdems.disturbnow.DisturbAlarm
 import android.app.PendingIntent
 import android.app.AlarmManager
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.macdems.disturbnow.R
 import android.widget.Toast
 import android.os.Build

@@ -23,7 +23,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import android.util.Log
@@ -87,9 +87,11 @@ class DNDTileService : TileService() {
         if (currentState == NotificationManager.INTERRUPTION_FILTER_ALL) {
             val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
             val mode = pref.getString("silence_mode", "priority")
-            val newState = if (mode == "none") NotificationManager.INTERRUPTION_FILTER_NONE else
-                           if (mode == "alarms") NotificationManager.INTERRUPTION_FILTER_ALARMS else
-                           NotificationManager.INTERRUPTION_FILTER_PRIORITY
+            val newState = when (mode) {
+                "none" -> NotificationManager.INTERRUPTION_FILTER_NONE
+                "alarms" -> NotificationManager.INTERRUPTION_FILTER_ALARMS
+                else -> NotificationManager.INTERRUPTION_FILTER_PRIORITY
+            }
             Log.d("DoNowDisturb", String.format("setting silence mode to '%s' (%d)", mode, newState))
             nm.setInterruptionFilter(newState)
             tile.state = Tile.STATE_ACTIVE
