@@ -110,6 +110,7 @@ class DNDTileService : TileService() {
         val currentInterruptionFilter = nm.currentInterruptionFilter
         if (currentInterruptionFilter == NotificationManager.INTERRUPTION_FILTER_ALL) {
             tile.state = Tile.STATE_INACTIVE
+            cancelAlarm()
             tile.updateTile()
         } else {
             tile.state = Tile.STATE_ACTIVE

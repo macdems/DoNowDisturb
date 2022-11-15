@@ -25,6 +25,16 @@
     <string name="enable_button">Enable</string>
     <string name="tile_settings">Tile Settings</string>
     <string name="silence_mode_label">Silence mode activated by the tile</string>
+    <string-array name="theme_labels">
+        <item>Use system settings</item>
+        <item>Bright theme</item>
+        <item>Dark theme</item>
+    </string-array>
+    <string-array name="theme_values" translatable="false">
+        <item>system</item>
+        <item>bright</item>
+        <item>dark</item>
+    </string-array>
     <string-array name="silence_mode_labels">
         <item>Priority only</item>
         <item>Alarms only</item>
@@ -37,12 +47,12 @@
     </string-array>
     <string name="show_notification_label">Show notification</string>
     <string name="dialog_settings">Dialog Settings</string>
-    <string name="dark_theme_label">Use dark theme</string>
+    <string name="theme_label">Display theme</string>
     <string name="tile_label">Do Not Disturb</string>
     <string name="select_end_time">Do not disturb until</string>
     <string name="keep_silent">Keep</string>
     <string name="do_not_disturb_until_message" formatted="false">Silenced until %d:%02d</string>
-    <string name="click_to_turn_off">Click to turn off</string>
+    <string name="turn_off">Turn off</string>
     <string name="turned_off">Do Not Disturb mode turned off</string>
     <string name="channel_name">Do Now Disturb</string>
     <string name="channel_description">Do Now Disturb notifications</string>

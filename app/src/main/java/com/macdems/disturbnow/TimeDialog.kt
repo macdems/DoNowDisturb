@@ -22,13 +22,14 @@ import android.app.AlertDialog
 import android.app.NotificationManager
 import android.content.Context
 import android.content.DialogInterface
+import android.content.res.Configuration
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TimePicker
 import android.widget.TimePicker.OnTimeChangedListener
+import androidx.preference.PreferenceManager
 import com.macdems.disturbnow.DisturbAlarm.Companion.setupAlarm
 import java.util.*
 
@@ -91,7 +92,15 @@ internal class TimeDialog(context: Context) : AlertDialog(context, getDialogThem
         private const val IS_24_HOUR = "is24hour"
         private fun getDialogTheme(context: Context): Int {
             val pref = PreferenceManager.getDefaultSharedPreferences(context)
-            return if (pref.getBoolean("dark_theme", false)) R.style.AppTheme_Dialog_Dark else R.style.AppTheme_Dialog_Light
+            val theme = pref.getString("theme", "priority")
+            return when (theme) {
+                "bright" -> R.style.AppTheme_Dialog_Light
+                "dark" -> R.style.AppTheme_Dialog_Dark
+                else -> when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                    Configuration.UI_MODE_NIGHT_YES -> R.style.AppTheme_Dialog_Dark
+                    else -> R.style.AppTheme_Dialog_Light
+                }
+            }
         }
     }
 

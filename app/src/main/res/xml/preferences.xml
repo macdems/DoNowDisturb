@@ -25,10 +25,13 @@
     <PreferenceCategory
         android:title="@string/dialog_settings"
         app:iconSpaceReserved="false">
-        <SwitchPreference
+        <ListPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="false"
-            android:key="dark_theme"
-            android:title="@string/dark_theme_label" />
+            android:defaultValue="system"
+            android:entries="@array/theme_labels"
+            android:entryValues="@array/theme_values"
+            android:key="theme"
+            android:summary="%s"
+            android:title="@string/theme_label" />
     </PreferenceCategory>
 </androidx.preference.PreferenceScreen>

@@ -18,21 +18,15 @@
  */
 package com.macdems.disturbnow
 
+import android.app.*
 import android.content.BroadcastReceiver
-import android.content.Intent
-import android.app.NotificationManager
-import com.macdems.disturbnow.DisturbAlarm
-import android.app.PendingIntent
-import android.app.AlarmManager
-import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
-import com.macdems.disturbnow.R
-import android.widget.Toast
-import android.os.Build
-import android.app.NotificationChannel
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
+import androidx.preference.PreferenceManager
 import java.util.*
 
 class DisturbAlarm : BroadcastReceiver() {
@@ -82,9 +76,8 @@ class DisturbAlarm : BroadcastReceiver() {
             val builder = NotificationCompat.Builder(context, DO_NOW_DISTURB_CHANNEL)
                     .setSmallIcon(R.drawable.ic_disturbnow)
                     .setContentTitle(text)
-                    .setContentText(context.getString(R.string.click_to_turn_off))
                     .setOngoing(true)
-            builder.setContentIntent(cancel)
+                    .addAction(0, context.getString(R.string.turn_off), cancel)
             manager.notify(R.id.notification, builder.build())
         }
 
