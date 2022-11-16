@@ -27,5 +27,5 @@
         android:strokeMiterLimit="4"
         android:strokeLineCap="round"
         android:strokeLineJoin="miter"
-        android:fillColor="#1a1a1a" />
+        android:fillColor="#ffffff" />
 </vector>

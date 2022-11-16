@@ -10,8 +10,8 @@ android {
         applicationId "com.macdems.disturbnow"
         minSdk 24
         targetSdk 31
-        versionCode 10200
-        versionName "1.2.0"
+        versionCode 10201
+        versionName "1.2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
